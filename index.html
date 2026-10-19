@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RS Midterm Spelling Words</title>
+<style>
+:root{--bg:#faf9f5;--card:#fff;--ink:#2b2926;--sub:#7a7468;--line:#ebe6da;--ac:#d97757;--acs:#fbeee8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--t1:#fbeee8;--s1:#c4552f;--t2:#fdf1d9;--s2:#b07a0a;--t3:#e6f3ea;--s3:#2f8a55;--t4:#e2f1f3;--s4:#238090;--t5:#e9edf8;--s5:#4a62b8;--t6:#f0e9f7;--s6:#8450b5;--t7:#fbe6ee;--s7:#c23d6b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#1f1e1c;--card:#2a2825;--ink:#f0eee6;--sub:#b3ad9f;--line:#3b3833;--ac:#e8896a;--acs:#3a2a24;--t1:#40271f;--s1:#ff9a78;--t2:#3d3216;--s2:#f0c060;--t3:#1d3427;--s3:#7fd6a0;--t4:#1a3338;--s4:#6cc8d8;--t5:#252b45;--s5:#9fb2f5;--t6:#32264a;--s6:#c9a4ee;--t7:#432533;--s7:#ff93b5}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#1f1e1c;--card:#2a2825;--ink:#f0eee6;--sub:#b3ad9f;--line:#3b3833;--ac:#e8896a;--acs:#3a2a24;--t1:#40271f;--s1:#ff9a78;--t2:#3d3216;--s2:#f0c060;--t3:#1d3427;--s3:#7fd6a0;--t4:#1a3338;--s4:#6cc8d8;--t5:#252b45;--s5:#9fb2f5;--t6:#32264a;--s6:#c9a4ee;--t7:#432533;--s7:#ff93b5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;padding:20px 16px 40px}
+.page{max-width:1100px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}
+h1{margin:0;font-size:26px;letter-spacing:.3px}
+h1 span{color:var(--ac)}
+.sub{color:var(--sub);font-size:14px;margin-top:4px}
+.tabs{display:inline-flex;background:var(--acs);border-radius:12px;padding:4px;gap:4px;margin-bottom:16px}
+button{font:inherit;cursor:pointer;border:0;background:transparent;color:var(--ink);border-radius:9px;padding:8px 18px}
+.tabs button{font-weight:600;color:var(--sub)}
+.tabs button.on{background:var(--ac);color:#fff}
+.act{background:var(--card);border:1px solid var(--line)}
+.act.p{background:var(--ac);border-color:var(--ac);color:#fff}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;align-items:center}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.chip{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px}
+.W1{background:var(--t1);color:var(--s1)}.W2{background:var(--t2);color:var(--s2)}.W4{background:var(--t4);color:var(--s4)}.W3{background:var(--t3);color:var(--s3)}.W5{background:var(--t5);color:var(--s5)}.W6{background:var(--t6);color:var(--s6)}.W7{background:var(--t7);color:var(--s7)}
+.pane{display:none}.pane.on{display:block}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.6}
+th{background:var(--acs);color:var(--ac);text-align:left;padding:10px 12px;font-size:13px;white-space:nowrap}
+td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+td.w{font-weight:700;font-size:16px;white-space:nowrap}
+td.pos{color:var(--sub);font-style:italic;white-space:nowrap}
+td.zh{font-weight:600}
+td.dz{color:var(--sub)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{perspective:900px;height:250px;cursor:pointer}
+.in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.open .in{transform:rotateY(180deg)}
+.f,.b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px}
+.f{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--c);gap:12px}
+.f .no{font-size:13px;color:var(--sub);margin-bottom:4px}
+.f button{width:100%;background:var(--t);color:var(--c);font-weight:700;padding:11px 8px}
+.b{transform:rotateY(180deg);background:var(--t);border:1px solid var(--line);gap:10px;line-height:1.7;overflow:auto}
+.b .wd{font-size:24px;font-weight:800;color:var(--c);line-height:1.3}
+.b .ps{font-size:13px;color:var(--sub);font-style:italic}
+.b .zh{font-size:16px;font-weight:700}
+.b .df{font-size:13.5px;color:var(--ink)}
+.b .dz{font-size:13.5px;color:var(--sub)}
+.b hr{width:40%;border:0;border-top:1px solid var(--line);margin:2px 0}
+@media print{
+@page{size:A4;margin:10mm}
+body{background:#fff;color:#000;padding:0}
+.tabs,.act,#p2{display:none!important}
+#p1{display:block!important}
+.wrap{border:0;overflow:visible}
+table{font-size:10pt}
+tr{page-break-inside:avoid}
+thead{display:table-header-group}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="page screen">
+<header>
+<div><h1>RS Midterm <span>Spelling Words</span></h1><div class="sub">W1–W7 · 共 70 個單字</div></div>
+<button class="act p" onclick="window.print()">🖨 列印</button>
+</header>
+<div class="tabs"><button class="on" id="b1" onclick="tab(1)">表格</button><button id="b2" onclick="tab(2)">翻翻卡</button></div>
+<div class="pane on" id="p1">
+<div class="wrap"><table>
+<thead><tr><th>週</th><th>單字</th><th>詞性</th><th>中文</th><th>英文定義</th><th>定義翻譯</th></tr></thead>
+<tbody id="tb"></tbody></table></div>
+</div>
+<div class="pane" id="p2">
+<div class="bar">
+<button class="act p" onclick="all_(true)">全部打開</button>
+<button class="act" onclick="all_(false)">全部關上</button>
+<div class="legend"><span class="chip W1">W1</span><span class="chip W2">W2</span><span class="chip W3">W3</span><span class="chip W4">W4</span><span class="chip W5">W5</span><span class="chip W6">W6</span><span class="chip W7">W7</span></div>
+</div>
+<div class="grid" id="gd"></div>
+</div>
+</div>
+<script>
+var D=[["W1","locomotives","n.","火車頭、機車頭","Locomotives are the engines that make a train go forward.","火車頭是讓火車向前行駛的引擎。"],["W1","chugged","v.","發出突突聲緩慢行進","If a machine chugged along, it moved slowly and noisily.","如果機器 chugged，表示它緩慢又吵雜地前進。"],["W1","gadgets","n.","小器具、小裝置","Gadgets are small, specialized machines or electronic devices.","小器具是小型、專門用途的機器或電子裝置。"],["W1","phonograph","n.","留聲機","A phonograph is an old machine that played recorded music or sound.","留聲機是一種播放錄製音樂或聲音的老式機器。"],["W1","sputtered","v.","發出嗶啵/喀啦聲（運轉不順）","If something sputtered, it worked in a rough or uneven way and made popping noises.","如果某物 sputtered，表示它運轉不順暢，並發出爆裂聲。"],["W1","flop","n.","徹底失敗（的事物）","Something that is a flop is a complete failure.","flop 指徹底的失敗。"],["W1","incandescent","adj.","白熾的、發光的","Something that is incandescent gives off a lot of light.","incandescent 的東西會發出很多光。"],["W1","cylinder","n.","圓柱體、汽缸","A cylinder has circular ends and straight sides. In an engine, a cylinder takes in gas to make other parts move.","圓柱體兩端是圓形、側面是直的。在引擎中，汽缸吸入氣體，帶動其他零件運動。"],["W1","patents","n.","專利、專利權","Patents are legal documents. If you get a patent for an invention, no one else is allowed to make or sell it.","專利是法律文件。若你為發明取得專利，別人就不能製造或販售它。"],["W1","excel","v.","擅長、勝過","To excel at something is to be very good at it.","excel at 某事，就是非常擅長。"],["W2","microphone","n.","麥克風（用於錄音或擴音的設備）","A device that is used for recording sounds or for making your voice louder.","用來錄音或讓聲音變大聲的裝置。"],["W2","saxophone","n.","薩克斯風（木管樂器）","A musical instrument that you blow into. It belongs to the woodwind family.","一種用嘴吹奏的樂器，屬於木管樂器家族。"],["W2","phonetics","n.","語音學","The study of speech sounds and how they are produced.","研究語音及其如何產生的學問。"],["W2","homophone","n.","同音異義字","A word that is pronounced like another word but has a different spelling or meaning.","發音與另一個字相同，但拼法或意義不同的字。"],["W2","extinct","adj.","絕種的、滅絕的","No longer in existence.","不再存在。"],["W2","extension","n.","擴大、延伸","The act of increasing the area of activity or group of people.","增加活動範圍或人群範圍的行為。"],["W2","elapse","v.","（時間）流逝、過去","If a period of time elapses, it passes.","若一段時間 elapse，表示它過去了。"],["W2","eject","v.","驅逐、噴出、彈出","To push/ force somebody/ something out.","把人或物推出去、強迫離開。"],["W2","exterior","n.","外部、外表（尤指建築物）","The outside of something, especially a building.","某物的外面，尤指建築物。"],["W2","enormity","n.","巨大、深遠的影響、嚴重性","The very great size, effect, etc. of something; the fact of something being very serious.","某事物極大的規模、影響等；事情非常嚴重的事實。"],["W3","spectator","n.","觀眾（尤指體育賽事）","A person who is watching an event, especially a sports event.","觀看活動（尤其是體育賽事）的人。"],["W3","sensation","n.","感覺、知覺","A feeling that you get when something affects your body.","某事影響身體時所產生的感覺。"],["W3","invisible","adj.","看不見的、無形的","Something that cannot be seen.","看不見的東西。"],["W3","twinkling","v.","閃爍、閃耀","To shine with a light that keeps changing from bright to pale to bright again.","發出時亮時暗、不斷變化的光。"],["W3","tropical","adj.","熱帶的","Coming from or found near the tropics (area near the equator).","來自或位於熱帶（赤道附近地區）的。"],["W3","prosperous","adj.","繁榮的、富裕的","Rich and successful.","富有且成功的。"],["W3","subsequent","adj.","隨後的、後來的","Happening or coming after something else.","發生在某事之後的。"],["W3","bustling","adj.","熙熙攘攘的、忙碌喧鬧的","Full of people moving about in a busy way.","滿是人忙碌來往的。"],["W3","soccer","n.","足球運動","A game played by two teams of 11 players, using a round ball which players kick.","由兩隊各 11 人進行、用腳踢圓球的比賽。"],["W3","chore","n.","日常雜務、家事","A task that you do regularly.","你需要定期做的一項工作。"],["W4","impulse","n.","衝動、一時的念頭","An impulse is the desire to do something.","impulse 是想做某事的渴望。"],["W4","passionate","adj.","熱情的、充滿激情的","To have a passionate feeling is to have strong emotions about it.","對某事有 passionate 的感覺，就是對它有強烈的情感。"],["W4","eccentric","adj.","古怪的、異乎尋常的","Someone who is eccentric is odd or strange.","eccentric 的人古怪或奇特。"],["W4","prototype","n.","原型、雛形","A prototype is a model created to test something before creating it in its final form.","原型是在製成最終形式前，用來測試的模型。"],["W4","acceleration","n.","加速、加速度","Acceleration is the act of moving faster.","加速是移動得更快的行為。"],["W4","distinguished","adj.","傑出的、卓越的","A distinguished group is known and respected for its excellence.","distinguished 的團體因其卓越而聞名並受尊敬。"],["W4","evidently","adv.","顯然、明擺著地","If something happened evidently, it happened for an obvious reason.","若某事 evidently 發生，是因為明顯的原因而發生。"],["W4","conceived","v.","構想出、設想","If you thought of the idea to create something, you conceived it.","如果你想出創造某物的點子，就是 conceived 了它。"],["W4","contribution","n.","貢獻","A person who helps to make something has made a contribution to that job.","幫助完成某事的人，對那項工作做出了 contribution（貢獻）。"],["W4","circumstances","n.","情況、情勢、境遇","The way an event happened or the causes of it are its circumstances.","事件發生的方式或其原因，就是它的 circumstances。"],["W5","automatic","adj.","自動的","Having controls that work without needing a person to operate them.","具有不需人操作就能運作的控制裝置。"],["W5","automobile","n.","汽車","A car.","汽車。"],["W5","biology","n.","生物學","The scientific study of the life and structure of plants and animals.","研究動植物生命與結構的科學。"],["W5","biography","n.","傳記","The story of a person’s life written by somebody else.","由他人撰寫的某人生平故事。"],["W5","irregular","adj.","不規則的","Not arranged in an even way, or not having an even, smooth pattern or shape.","排列不均勻，或形狀、圖案不平均不平滑。"],["W5","irresponsible","adj.","不負責任的","Not thinking enough about the effects of what they do; not showing a feeling of responsibility.","做事時沒有充分考慮後果；缺乏責任感。"],["W5","irrelevant","adj.","不相關的、無關緊要的","Not important to or connected with a situation.","對某情況不重要或沒有關聯。"],["W5","illness","n.","疾病","The state of being physically or mentally sick.","身體或心理生病的狀態。"],["W5","illegal","adj.","違法的、非法的","Not allowed by the law.","法律不允許的。"],["W5","illogical","adj.","不合邏輯的、荒謬的","Not sensible or thought out in a logical way.","不合理、沒有經過邏輯思考的。"],["W6","high","adj.","高的","Measuring a long distance from the bottom to the top.","從底部到頂部的距離很長。"],["W6","sky","n.","天空","The space above the earth that you can see when you look up.","抬頭時看到的地球上方的空間。"],["W6","pine","n.","松樹","An evergreen forest tree with leaves like needles.","一種葉子像針的常綠森林樹木。"],["W6","fine","adj.","很好的、健康的","Very well!","非常好！"],["W6","slow","adj.","慢的","Not moving, acting or done quickly; taking a long time; not fast.","不快速移動、行動或完成；耗時很久；不快。"],["W6","stroll","v.","散步、閒逛","To walk somewhere in a slow relaxed way.","以緩慢輕鬆的方式走到某處。"],["W6","throw","v.","投、擲、扔","To send something from your hand through the air by moving your hand or arm quickly.","迅速揮動手或手臂，把東西從手中拋向空中。"],["W6","foal","n.","幼馬、小驢","A very young horse or donkey.","非常年幼的馬或驢。"],["W6","snow","n.","雪","Small soft white flakes of frozen water that fall from the sky in cold weather.","寒冷天氣中從天空落下的柔軟白色小片凍結水。"],["W6","go","v.","去、走","To move somewhere.","移動到某處。"],["W7","eloped","v.","私奔","To run away with somebody in order to marry them secretly.","為了秘密結婚而與某人一起逃走。"],["W7","feisty","adj.","好鬥的、勇猛有氣魄的","Brave and determined and not afraid of arguing or defending yourself.","勇敢堅定，不怕爭論或為自己辯護。"],["W7","decompose","v.","分解、腐爛","To be destroyed gradually after death by natural processes.","死後被自然過程逐漸破壞。"],["W7","amplify","v.","放大（聲音等）、擴大","To amplify something you increase something in strength, especially sound.","amplify 某物就是增加其強度，尤指聲音。"],["W7","soprano","n.","女高音（或童聲高音）","A singing voice with the highest range for a woman or boy.","女性或男孩最高音域的歌聲。"],["W7","knowingly","adv.","故意地、蓄意地","To do something on purpose.","故意做某事。"],["W7","recycling","n.","回收利用","The process of treating things that have already been used so that they can be used again.","處理用過的東西使其能再次使用的過程。"],["W7","geode","n.","晶洞、晶石","A small hole in rock that has crystals around the inside; a rock containing a geode.","岩石中內壁佈滿結晶的小洞；含有這種洞的岩石。"],["W7","recline","v.","斜倚、靠著休息","To sit or lie in a relaxed way, with your body leaning backwards.","以身體向後傾的放鬆姿勢坐著或躺著。"],["W7","lotion","n.","乳液、化妝水","A liquid used for cleaning, protecting or treating the skin.","用來清潔、保護或護理皮膚的液體。"]];
+function speak(t){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.9;speechSynthesis.speak(u)}catch(e){}}
+function tab(n){[1,2].forEach(function(i){document.getElementById("p"+i).classList.toggle("on",i==n);document.getElementById("b"+i).classList.toggle("on",i==n)})}
+var tb=document.getElementById("tb"),gd=document.getElementById("gd");
+D.forEach(function(d,i){
+d.n=i+1;
+var tr=document.createElement("tr");
+tr.innerHTML="<td><span class='chip "+d[0]+"'>"+d[0]+"</span></td><td class='w'>"+d[1]+"</td><td class='pos'>"+d[2]+"</td><td class='zh'>"+d[3]+"</td><td>"+d[4]+"</td><td class='dz'>"+d[5]+"</td>";
+tb.appendChild(tr);
+var c=document.createElement("div");c.className="card";c.style.setProperty("--c","var(--s"+d[0].slice(1)+")");c.style.setProperty("--t","var(--t"+d[0].slice(1)+")");
+c.innerHTML="<div class='in'><div class='f'><div class='no'>"+d[0]+" · "+(i+1)+" / "+D.length+"</div><button data-s='"+i+"' data-k='w'>🔊 朗讀單字</button><button data-s='"+i+"' data-k='d'>🔊 朗讀定義</button></div><div class='b'><div class='wd'>"+d[1]+"</div><div class='ps'>"+d[2]+"</div><div class='zh'>"+d[3]+"</div><hr><div class='df'>"+d[4]+"</div><div class='dz'>"+d[5]+"</div></div></div>";
+c.onclick=function(e){var b=e.target.closest("button");if(b){e.stopPropagation();var x=D[b.dataset.s];speak(b.dataset.k=="w"?x[1]:x[4]);return}c.classList.toggle("open")};
+gd.appendChild(c);
+});
+function all_(o){document.querySelectorAll(".card").forEach(function(c){c.classList.toggle("open",o)})}
+</script>
+</body>
+</html>
