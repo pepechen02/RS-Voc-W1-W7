@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RS Midterm Spelling Words</title>
+<title>RS Midterm Vocabulary Words</title>
 <style>
 :root{--bg:#faf9f5;--card:#fff;--ink:#2b2926;--sub:#7a7468;--line:#ebe6da;--ac:#d97757;--acs:#fbeee8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 --t1:#fbeee8;--s1:#c4552f;--t2:#fdf1d9;--s2:#b07a0a;--t3:#e6f3ea;--s3:#2f8a55;--t4:#e2f1f3;--s4:#238090;--t5:#e9edf8;--s5:#4a62b8;--t6:#f0e9f7;--s6:#8450b5;--t7:#fbe6ee;--s7:#c23d6b}
@@ -50,10 +50,37 @@ td.dz{color:var(--sub)}
 .b .df{font-size:13.5px;color:var(--ink)}
 .b .dz{font-size:13.5px;color:var(--sub)}
 .b hr{width:40%;border:0;border-top:1px solid var(--line);margin:2px 0}
+.sub2{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.sub2 button{background:var(--card);border:1px solid var(--line);font-weight:600;color:var(--sub)}
+.sub2 button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.qhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px;color:var(--sub);font-size:14px}
+.qi{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+.qi.ok{border-left-color:var(--s3)}.qi.bad{border-left-color:var(--s7)}
+.qno{width:30px;height:30px;border-radius:50%;background:var(--acs);color:var(--ac);font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
+.qb{flex:1;line-height:1.7;min-width:0}
+.qb input{width:100%;max-width:340px;margin-top:8px;padding:9px 12px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.qb input:focus{outline:2px solid var(--ac)}
+.df{color:var(--ink)}.dz{color:var(--sub)}
+.tag{font-size:12.5px;color:var(--sub);font-style:italic}
+.ex{margin-top:10px;padding:10px 12px;background:var(--acs);border-radius:10px;font-size:14px}
+.sen{font-size:16px;line-height:2.1}
+.slot{display:inline-block;min-width:110px;text-align:center;border-bottom:2px dashed var(--ac);padding:0 8px;color:var(--ac);font-weight:700;cursor:pointer}
+.slot.f{border-bottom-style:solid;background:var(--acs);border-radius:6px}
+.bank{display:flex;flex-wrap:wrap;gap:8px;padding:12px;margin-bottom:14px;background:var(--acs);border:1px dashed var(--ac);border-radius:12px;min-height:52px}
+.chip2{padding:6px 14px;background:var(--card);border:1px solid var(--ac);color:var(--ac);border-radius:99px;font-weight:700;cursor:grab;user-select:none}
+.chip2.sel{background:var(--ac);color:#fff}
+.score{font-size:20px;font-weight:800;color:var(--ac);margin-bottom:12px}
+.big{display:block;margin:16px auto;padding:12px 28px}
+.empty{padding:40px;text-align:center;color:var(--sub)}
+.wd2{font-size:20px;color:var(--ac)}
+.chip2,.slot.f{touch-action:none;user-select:none;-webkit-user-select:none}
+.slot{min-height:1.9em;min-width:120px;vertical-align:middle;user-select:none;-webkit-user-select:none}
+.slot.hot{background:var(--acs);outline:2px solid var(--ac);border-radius:6px}
+.ghost{position:fixed;z-index:99;pointer-events:none;transform:translate(-50%,-130%);background:var(--ac);color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.28)}
 @media print{
 @page{size:A4;margin:10mm}
 body{background:#fff;color:#000;padding:0}
-.tabs,.act,#p2{display:none!important}
+.tabs,.act,#p2,#p3{display:none!important}
 #p1{display:block!important}
 .wrap{border:0;overflow:visible}
 table{font-size:10pt}
@@ -66,10 +93,10 @@ thead{display:table-header-group}
 <body>
 <div class="page screen">
 <header>
-<div><h1>RS Midterm <span>Spelling Words</span></h1><div class="sub">W1–W7 · 共 70 個單字</div></div>
+<div><h1>RS Midterm <span>Vocabulary Words</span></h1><div class="sub">W1–W7 · 共 70 個單字</div></div>
 <button class="act p" onclick="window.print()">🖨 列印</button>
 </header>
-<div class="tabs"><button class="on" id="b1" onclick="tab(1)">表格</button><button id="b2" onclick="tab(2)">翻翻卡</button></div>
+<div class="tabs"><button class="on" id="b1" onclick="tab(1)">表格</button><button id="b2" onclick="tab(2)">翻翻卡</button><button id="b3" onclick="tab(3)">測驗</button></div>
 <div class="pane on" id="p1">
 <div class="wrap"><table>
 <thead><tr><th>週</th><th>單字</th><th>詞性</th><th>中文</th><th>英文定義</th><th>定義翻譯</th></tr></thead>
@@ -83,11 +110,12 @@ thead{display:table-header-group}
 </div>
 <div class="grid" id="gd"></div>
 </div>
+<div class="pane" id="p3"><div id="qz"></div></div>
 </div>
 <script>
 var D=[["W1","locomotives","n.","火車頭、機車頭","Locomotives are the engines that make a train go forward.","火車頭是讓火車向前行駛的引擎。"],["W1","chugged","v.","發出突突聲緩慢行進","If a machine chugged along, it moved slowly and noisily.","如果機器 chugged，表示它緩慢又吵雜地前進。"],["W1","gadgets","n.","小器具、小裝置","Gadgets are small, specialized machines or electronic devices.","小器具是小型、專門用途的機器或電子裝置。"],["W1","phonograph","n.","留聲機","A phonograph is an old machine that played recorded music or sound.","留聲機是一種播放錄製音樂或聲音的老式機器。"],["W1","sputtered","v.","發出嗶啵/喀啦聲（運轉不順）","If something sputtered, it worked in a rough or uneven way and made popping noises.","如果某物 sputtered，表示它運轉不順暢，並發出爆裂聲。"],["W1","flop","n.","徹底失敗（的事物）","Something that is a flop is a complete failure.","flop 指徹底的失敗。"],["W1","incandescent","adj.","白熾的、發光的","Something that is incandescent gives off a lot of light.","incandescent 的東西會發出很多光。"],["W1","cylinder","n.","圓柱體、汽缸","A cylinder has circular ends and straight sides. In an engine, a cylinder takes in gas to make other parts move.","圓柱體兩端是圓形、側面是直的。在引擎中，汽缸吸入氣體，帶動其他零件運動。"],["W1","patents","n.","專利、專利權","Patents are legal documents. If you get a patent for an invention, no one else is allowed to make or sell it.","專利是法律文件。若你為發明取得專利，別人就不能製造或販售它。"],["W1","excel","v.","擅長、勝過","To excel at something is to be very good at it.","excel at 某事，就是非常擅長。"],["W2","microphone","n.","麥克風（用於錄音或擴音的設備）","A device that is used for recording sounds or for making your voice louder.","用來錄音或讓聲音變大聲的裝置。"],["W2","saxophone","n.","薩克斯風（木管樂器）","A musical instrument that you blow into. It belongs to the woodwind family.","一種用嘴吹奏的樂器，屬於木管樂器家族。"],["W2","phonetics","n.","語音學","The study of speech sounds and how they are produced.","研究語音及其如何產生的學問。"],["W2","homophone","n.","同音異義字","A word that is pronounced like another word but has a different spelling or meaning.","發音與另一個字相同，但拼法或意義不同的字。"],["W2","extinct","adj.","絕種的、滅絕的","No longer in existence.","不再存在。"],["W2","extension","n.","擴大、延伸","The act of increasing the area of activity or group of people.","增加活動範圍或人群範圍的行為。"],["W2","elapse","v.","（時間）流逝、過去","If a period of time elapses, it passes.","若一段時間 elapse，表示它過去了。"],["W2","eject","v.","驅逐、噴出、彈出","To push/ force somebody/ something out.","把人或物推出去、強迫離開。"],["W2","exterior","n.","外部、外表（尤指建築物）","The outside of something, especially a building.","某物的外面，尤指建築物。"],["W2","enormity","n.","巨大、深遠的影響、嚴重性","The very great size, effect, etc. of something; the fact of something being very serious.","某事物極大的規模、影響等；事情非常嚴重的事實。"],["W3","spectator","n.","觀眾（尤指體育賽事）","A person who is watching an event, especially a sports event.","觀看活動（尤其是體育賽事）的人。"],["W3","sensation","n.","感覺、知覺","A feeling that you get when something affects your body.","某事影響身體時所產生的感覺。"],["W3","invisible","adj.","看不見的、無形的","Something that cannot be seen.","看不見的東西。"],["W3","twinkling","v.","閃爍、閃耀","To shine with a light that keeps changing from bright to pale to bright again.","發出時亮時暗、不斷變化的光。"],["W3","tropical","adj.","熱帶的","Coming from or found near the tropics (area near the equator).","來自或位於熱帶（赤道附近地區）的。"],["W3","prosperous","adj.","繁榮的、富裕的","Rich and successful.","富有且成功的。"],["W3","subsequent","adj.","隨後的、後來的","Happening or coming after something else.","發生在某事之後的。"],["W3","bustling","adj.","熙熙攘攘的、忙碌喧鬧的","Full of people moving about in a busy way.","滿是人忙碌來往的。"],["W3","soccer","n.","足球運動","A game played by two teams of 11 players, using a round ball which players kick.","由兩隊各 11 人進行、用腳踢圓球的比賽。"],["W3","chore","n.","日常雜務、家事","A task that you do regularly.","你需要定期做的一項工作。"],["W4","impulse","n.","衝動、一時的念頭","An impulse is the desire to do something.","impulse 是想做某事的渴望。"],["W4","passionate","adj.","熱情的、充滿激情的","To have a passionate feeling is to have strong emotions about it.","對某事有 passionate 的感覺，就是對它有強烈的情感。"],["W4","eccentric","adj.","古怪的、異乎尋常的","Someone who is eccentric is odd or strange.","eccentric 的人古怪或奇特。"],["W4","prototype","n.","原型、雛形","A prototype is a model created to test something before creating it in its final form.","原型是在製成最終形式前，用來測試的模型。"],["W4","acceleration","n.","加速、加速度","Acceleration is the act of moving faster.","加速是移動得更快的行為。"],["W4","distinguished","adj.","傑出的、卓越的","A distinguished group is known and respected for its excellence.","distinguished 的團體因其卓越而聞名並受尊敬。"],["W4","evidently","adv.","顯然、明擺著地","If something happened evidently, it happened for an obvious reason.","若某事 evidently 發生，是因為明顯的原因而發生。"],["W4","conceived","v.","構想出、設想","If you thought of the idea to create something, you conceived it.","如果你想出創造某物的點子，就是 conceived 了它。"],["W4","contribution","n.","貢獻","A person who helps to make something has made a contribution to that job.","幫助完成某事的人，對那項工作做出了 contribution（貢獻）。"],["W4","circumstances","n.","情況、情勢、境遇","The way an event happened or the causes of it are its circumstances.","事件發生的方式或其原因，就是它的 circumstances。"],["W5","automatic","adj.","自動的","Having controls that work without needing a person to operate them.","具有不需人操作就能運作的控制裝置。"],["W5","automobile","n.","汽車","A car.","汽車。"],["W5","biology","n.","生物學","The scientific study of the life and structure of plants and animals.","研究動植物生命與結構的科學。"],["W5","biography","n.","傳記","The story of a person’s life written by somebody else.","由他人撰寫的某人生平故事。"],["W5","irregular","adj.","不規則的","Not arranged in an even way, or not having an even, smooth pattern or shape.","排列不均勻，或形狀、圖案不平均不平滑。"],["W5","irresponsible","adj.","不負責任的","Not thinking enough about the effects of what they do; not showing a feeling of responsibility.","做事時沒有充分考慮後果；缺乏責任感。"],["W5","irrelevant","adj.","不相關的、無關緊要的","Not important to or connected with a situation.","對某情況不重要或沒有關聯。"],["W5","illness","n.","疾病","The state of being physically or mentally sick.","身體或心理生病的狀態。"],["W5","illegal","adj.","違法的、非法的","Not allowed by the law.","法律不允許的。"],["W5","illogical","adj.","不合邏輯的、荒謬的","Not sensible or thought out in a logical way.","不合理、沒有經過邏輯思考的。"],["W6","high","adj.","高的","Measuring a long distance from the bottom to the top.","從底部到頂部的距離很長。"],["W6","sky","n.","天空","The space above the earth that you can see when you look up.","抬頭時看到的地球上方的空間。"],["W6","pine","n.","松樹","An evergreen forest tree with leaves like needles.","一種葉子像針的常綠森林樹木。"],["W6","fine","adj.","很好的、健康的","Very well!","非常好！"],["W6","slow","adj.","慢的","Not moving, acting or done quickly; taking a long time; not fast.","不快速移動、行動或完成；耗時很久；不快。"],["W6","stroll","v.","散步、閒逛","To walk somewhere in a slow relaxed way.","以緩慢輕鬆的方式走到某處。"],["W6","throw","v.","投、擲、扔","To send something from your hand through the air by moving your hand or arm quickly.","迅速揮動手或手臂，把東西從手中拋向空中。"],["W6","foal","n.","幼馬、小驢","A very young horse or donkey.","非常年幼的馬或驢。"],["W6","snow","n.","雪","Small soft white flakes of frozen water that fall from the sky in cold weather.","寒冷天氣中從天空落下的柔軟白色小片凍結水。"],["W6","go","v.","去、走","To move somewhere.","移動到某處。"],["W7","eloped","v.","私奔","To run away with somebody in order to marry them secretly.","為了秘密結婚而與某人一起逃走。"],["W7","feisty","adj.","好鬥的、勇猛有氣魄的","Brave and determined and not afraid of arguing or defending yourself.","勇敢堅定，不怕爭論或為自己辯護。"],["W7","decompose","v.","分解、腐爛","To be destroyed gradually after death by natural processes.","死後被自然過程逐漸破壞。"],["W7","amplify","v.","放大（聲音等）、擴大","To amplify something you increase something in strength, especially sound.","amplify 某物就是增加其強度，尤指聲音。"],["W7","soprano","n.","女高音（或童聲高音）","A singing voice with the highest range for a woman or boy.","女性或男孩最高音域的歌聲。"],["W7","knowingly","adv.","故意地、蓄意地","To do something on purpose.","故意做某事。"],["W7","recycling","n.","回收利用","The process of treating things that have already been used so that they can be used again.","處理用過的東西使其能再次使用的過程。"],["W7","geode","n.","晶洞、晶石","A small hole in rock that has crystals around the inside; a rock containing a geode.","岩石中內壁佈滿結晶的小洞；含有這種洞的岩石。"],["W7","recline","v.","斜倚、靠著休息","To sit or lie in a relaxed way, with your body leaning backwards.","以身體向後傾的放鬆姿勢坐著或躺著。"],["W7","lotion","n.","乳液、化妝水","A liquid used for cleaning, protecting or treating the skin.","用來清潔、保護或護理皮膚的液體。"]];
 function speak(t){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.9;speechSynthesis.speak(u)}catch(e){}}
-function tab(n){[1,2].forEach(function(i){document.getElementById("p"+i).classList.toggle("on",i==n);document.getElementById("b"+i).classList.toggle("on",i==n)})}
+function tab(n){[1,2,3].forEach(function(i){document.getElementById("p"+i).classList.toggle("on",i==n);document.getElementById("b"+i).classList.toggle("on",i==n)})}
 var tb=document.getElementById("tb"),gd=document.getElementById("gd");
 D.forEach(function(d,i){
 d.n=i+1;
@@ -100,6 +128,78 @@ c.onclick=function(e){var b=e.target.closest("button");if(b){e.stopPropagation()
 gd.appendChild(c);
 });
 function all_(o){document.querySelectorAll(".card").forEach(function(c){c.classList.toggle("open",o)})}
+
+var S={"locomotives": ["Old steam ___ pulled long trains across the country.", "The museum has three restored ___ that visitors can climb into.", "Powerful ___ are needed to haul heavy cargo up steep hills.", "The boy loved watching the big ___ roll into the station."], "chugged": ["The old truck ___ slowly up the muddy hill.", "The little boat ___ along the river all afternoon.", "Our tired car ___ down the road before it finally stopped.", "The steam train ___ out of the station with a cloud of smoke."], "gadgets": ["My uncle collects kitchen ___ like garlic presses and egg slicers.", "The store sells all kinds of useful ___ for travelers.", "Kids today carry many electronic ___ in their backpacks.", "She loves new ___ that make daily chores easier."], "phonograph": ["Grandpa played an old record on his ___.", "Edison invented the ___ in the late 1800s.", "The antique ___ had a large horn instead of a speaker.", "You had to turn a crank to wind up the ___."], "sputtered": ["The engine ___ twice and then went silent.", "The candle ___ in the wind before going out.", "The old motorbike ___ and coughed as it started.", "Water ___ from the broken tap before it stopped."], "flop": ["The movie was a total ___ and closed after one week.", "His new snack was a ___ because nobody liked the taste.", "The school play turned into a ___ when the lights failed.", "After such a ___, the company had to try a new idea."], "incandescent": ["An ___ bulb glows when electricity heats a thin wire.", "The ___ lamp lit up the whole dark room.", "The old shop used ___ lights that felt warm and yellow.", "Many homes now replace ___ bulbs with LED ones."], "cylinder": ["The piston moves up and down inside the ___.", "A can of soup is shaped like a ___.", "The gas enters the ___ and pushes the piston.", "He measured the height of the glass ___ with a ruler."], "patents": ["The inventor applied for two ___ to protect his machines.", "Companies hold many ___ so others cannot copy their ideas.", "Edison received over a thousand ___ in his lifetime.", "Without ___, anyone could sell your invention."], "excel": ["She hopes to ___ at math this year.", "Students who practice every day often ___ in sports.", "He wants to ___ in music, so he practices for hours.", "You can ___ at anything if you work hard enough."], "impulse": ["She bought the toy on ___ without thinking.", "He felt an ___ to jump into the cold lake.", "Don't act on ___ when you are angry.", "A sudden ___ made her call her old friend."], "passionate": ["He is ___ about saving the ocean.", "The coach gave a ___ speech before the big game.", "She is a ___ painter who works every day.", "They had a ___ debate about the new rule."], "eccentric": ["My ___ aunt wears a hat shaped like a fish.", "The ___ professor kept a goat in his office.", "Everyone knew the ___ inventor who talked to his machines.", "His ___ habits made the neighbors laugh."], "prototype": ["The engineers built a ___ before making a thousand cars.", "The first ___ of the robot could only walk slowly.", "We tested the ___ to find any problems.", "A ___ is often rough and may not look beautiful."], "acceleration": ["The car's quick ___ pushed us back in our seats.", "A sports car is known for its fast ___.", "Scientists measure ___ to see how speed changes.", "The rocket's ___ was strong at launch."], "distinguished": ["He is a ___ scientist who has won many awards.", "She comes from a ___ family of doctors and teachers.", "The ___ professor was welcomed by loud applause.", "A ___ writer visited our school today."], "evidently": ["He was ___ tired, since he fell asleep at once.", "The road was ___ closed because there were no cars.", "She had ___ forgotten her keys and stood outside.", "It had ___ rained, since the ground was wet."], "conceived": ["The artist ___ the idea while walking in the park.", "Who first ___ the plan for the new bridge?", "She ___ a clever way to save water.", "The inventor ___ a machine that could fly."], "contribution": ["Every student made a ___ to the class project.", "Her ___ to science was recognized with a prize.", "Thank you for your kind ___ to our school.", "His small ___ helped the team win."], "circumstances": ["Under the ___, we decided to cancel the trip.", "The ___ of the accident are still unclear.", "In difficult ___, some people become stronger.", "Because of special ___, the exam was delayed."]};
+var Q={mode:1,qs:[],done:false,bank:[],sel:""};
+var WB=[];try{WB=JSON.parse(localStorage.getItem("rsv_wrong")||"[]")}catch(e){}
+function saveWB(){try{localStorage.setItem("rsv_wrong",JSON.stringify(WB))}catch(e){}}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
+function mask(d){var st=d[1].replace(/s$/,"");return d[4].replace(new RegExp("\\b"+st+"\\w*","gi"),"_____")}
+function setMode(m){Q.mode=m;if(m<4)newQ();else render()}
+function newQ(){
+var wk=Q.mode==1?["W2","W3","W5","W6","W7"]:["W1","W4"];
+var pk=shuf(D.filter(function(d){return wk.indexOf(d[0])>=0})).slice(0,10);
+Q.qs=pk.map(function(d){var q={d:d,ans:"",ok:false};if(Q.mode==3){var a=S[d[1]];q.s=a[Math.floor(Math.random()*a.length)]}return q});
+Q.bank=shuf(pk.map(function(d){return d[1]}));Q.sel="";Q.done=false;render()}
+function qnav(){var n=["① 聽寫拼字","② 定義拼字","③ 例句填空","錯題本 ("+WB.length+")"];return '<div class="sub2">'+n.map(function(t,i){return '<button class="'+(Q.mode==i+1?'on':'')+'" onclick="setMode('+(i+1)+')">'+t+'</button>'}).join("")+'</div>'}
+function render(){
+var h=qnav(),m=Q.mode,el=document.getElementById("qz");
+if(m==4){el.innerHTML=h+wrongHTML();return}
+var info=m==1?"聽朗讀，輸入單字拼法（範圍 W2 W3 W5 W6 W7）":m==2?"看英文定義，輸入單字（範圍 W1 W4）":"把單字拖曳到空格；手機可先點單字再點空格（範圍 W1 W4）";
+h+='<div class="qhead"><span>'+info+'</span><button class="act p" onclick="newQ()">🔄 重新測驗（重新隨機抽 10 題）</button></div>';
+if(Q.done)h+='<div class="score">得分：'+Q.qs.filter(function(q){return q.ok}).length+' / 10　<span class="tag">答錯的題目已加入錯題本</span></div>';
+if(m==3)h+=bankHTML();
+h+=Q.qs.map(qHTML).join("");
+h+=Q.done?'<button class="act p big" onclick="newQ()">🔄 重新測驗</button>':'<button class="act p big" onclick="submitQ()">送出批改</button>';
+el.innerHTML=h}
+function qHTML(q,i){
+var d=q.d,m=Q.mode,h='<div class="qi'+(Q.done?(q.ok?' ok':' bad'):'')+'"><div class="qno">'+(i+1)+'</div><div class="qb">';
+var inp='<div><input id="in'+i+'" '+(Q.done?'disabled ':'')+'value="'+esc(q.ans)+'" placeholder="輸入拼法" autocomplete="off" autocapitalize="off" spellcheck="false"></div>';
+if(m==1)h+='<button class="act" onclick="speak(\''+d[1]+'\')">🔊 播放單字</button>'+inp;
+else if(m==2)h+='<div class="df">'+mask(d)+'</div>'+inp;
+else h+='<div class="sen">'+q.s.replace("___",'<span class="slot'+(q.ans?' f':'')+'" data-i="'+i+'" '+(q.ans&&!Q.done?'onpointerdown="pd(event,\''+q.ans+'\','+i+')"':'onclick="slotClick('+i+')"')+'>'+(q.ans||"&emsp;&emsp;")+'</span>')+'</div>';
+if(Q.done)h+=exHTML(q);
+return h+'</div></div>'}
+function exHTML(q){var d=q.d;
+var h='<div class="ex"><div>'+(q.ok?'✅ 答對了':'❌ 你的答案：'+(esc(q.ans)||'（未作答）'))+'</div>';
+h+='<div><b>正確答案：'+d[1]+'</b> <span class="tag">'+d[2]+'</span>　'+d[3]+'</div>';
+if(Q.mode==3)h+='<div class="df">'+q.s.replace("___","<b>"+d[1]+"</b>")+'</div>';
+return h+'<div class="df">'+d[4]+'</div><div class="dz">'+d[5]+'</div></div>'}
+function submitQ(){
+Q.qs.forEach(function(q,i){
+if(Q.mode<3){q.ans=document.getElementById("in"+i).value.trim();q.ok=q.ans.toLowerCase()==q.d[1].toLowerCase()}
+else q.ok=q.ans==q.d[1];
+if(!q.ok&&!WB.some(function(x){return x.w==q.d[1]&&x.m==Q.mode}))WB.push({w:q.d[1],m:Q.mode})});
+Q.done=true;saveWB();render();window.scrollTo(0,0)}
+function bankHTML(){var used=Q.qs.map(function(q){return q.ans});
+return '<div class="bank"><b style="color:var(--ac)">Word Bank</b>'+Q.bank.map(function(w){return used.indexOf(w)>=0?'':'<span class="chip2'+(Q.sel==w?' sel':'')+'" onpointerdown="pd(event,\''+w+'\',-1)">'+w+'</span>'}).join("")+'</div>'}
+function selW(w){if(Q.done)return;Q.sel=Q.sel==w?"":w;render()}
+function place(i,w){if(Q.done||!w)return;Q.qs.forEach(function(q){if(q.ans==w)q.ans=""});Q.qs[i].ans=w;Q.sel="";render()}
+var DR=null;
+function pd(e,w,src){if(Q.done||(e.button&&e.button!==0))return;
+DR={w:w,src:src,x:e.clientX,y:e.clientY,g:null};
+document.addEventListener("pointermove",pm,{passive:false});document.addEventListener("pointerup",pu);document.addEventListener("pointercancel",pc)}
+function slotAt(x,y){var el=document.elementFromPoint(x,y);return el&&el.closest?el.closest(".slot"):null}
+function hl(t){document.querySelectorAll(".slot.hot").forEach(function(n){n.classList.remove("hot")});if(t)t.classList.add("hot")}
+function pm(e){if(!DR)return;
+if(!DR.g){if(Math.abs(e.clientX-DR.x)+Math.abs(e.clientY-DR.y)<8)return;
+var g=document.createElement("div");g.className="chip2 ghost";g.textContent=DR.w;document.body.appendChild(g);DR.g=g}
+DR.g.style.left=e.clientX+"px";DR.g.style.top=e.clientY+"px";e.preventDefault();hl(slotAt(e.clientX,e.clientY))}
+function endDR(){document.removeEventListener("pointermove",pm);document.removeEventListener("pointerup",pu);document.removeEventListener("pointercancel",pc);var d=DR;DR=null;if(d&&d.g)d.g.remove();hl(null);return d}
+function pc(){var d=endDR();if(d&&d.g)render()}
+function pu(e){var d=endDR();if(!d)return;
+if(!d.g){if(d.src<0)selW(d.w);else slotClick(d.src);return}
+var t=slotAt(e.clientX,e.clientY);
+if(t){var i=+t.dataset.i;if(d.src>=0&&d.src!=i){Q.qs[d.src].ans=Q.qs[i].ans}else if(d.src<0){Q.qs.forEach(function(q){if(q.ans==d.w)q.ans=""})}Q.qs[i].ans=d.w;Q.sel=""}
+else if(d.src>=0)Q.qs[d.src].ans="";
+render()}
+function slotClick(i){if(Q.done)return;if(Q.sel)place(i,Q.sel);else if(Q.qs[i].ans){Q.qs[i].ans="";render()}}
+function wrongHTML(){
+if(!WB.length)return '<div class="empty">目前沒有錯題 🎉<br>測驗答錯的題目會自動收進這裡。</div>';
+var tn=["","聽寫拼字","定義拼字","例句填空"];
+return '<div class="qhead"><span>共 '+WB.length+' 題（存在這個瀏覽器）</span><button class="act" onclick="WB=[];saveWB();render()">清空錯題本</button></div>'+WB.map(function(x,i){var d=D.filter(function(r){return r[1]==x.w})[0];return '<div class="qi bad"><div class="qb"><div><b class="wd2">'+d[1]+'</b> <span class="tag">'+d[2]+' · '+tn[x.m]+'</span> <button class="act" onclick="speak(\''+d[1]+'\')">🔊</button> <button class="act" onclick="WB.splice('+i+',1);saveWB();render()">移除</button></div><div><b>'+d[3]+'</b></div><div class="df">'+d[4]+'</div><div class="dz">'+d[5]+'</div></div></div>'}).join("")}
+newQ();
 </script>
 </body>
 </html>
