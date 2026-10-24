@@ -65,7 +65,7 @@ td.dz{color:var(--sub)}
 .ex{margin-top:10px;padding:10px 12px;background:var(--acs);border-radius:10px;font-size:14px}
 .sen{font-size:16px;line-height:2.1}
 .slot{display:inline-block;min-width:110px;text-align:center;border-bottom:2px dashed var(--ac);padding:0 8px;color:var(--ac);font-weight:700;cursor:pointer}
-.slot.f{border-bottom-style:solid;background:var(--acs);border-radius:6px}
+.slot.fill{border-bottom-style:solid;background:var(--acs);border-radius:6px}
 .bank{display:flex;flex-wrap:wrap;gap:8px;padding:12px;margin-bottom:14px;background:var(--acs);border:1px dashed var(--ac);border-radius:12px;min-height:52px}
 .chip2{padding:6px 14px;background:var(--card);border:1px solid var(--ac);color:var(--ac);border-radius:99px;font-weight:700;cursor:grab;user-select:none}
 .chip2.sel{background:var(--ac);color:#fff}
@@ -73,7 +73,7 @@ td.dz{color:var(--sub)}
 .big{display:block;margin:16px auto;padding:12px 28px}
 .empty{padding:40px;text-align:center;color:var(--sub)}
 .wd2{font-size:20px;color:var(--ac)}
-.chip2,.slot.f{touch-action:none;user-select:none;-webkit-user-select:none}
+.chip2,.slot.fill{touch-action:none;user-select:none;-webkit-user-select:none}
 .slot{min-height:1.9em;min-width:120px;vertical-align:middle;user-select:none;-webkit-user-select:none}
 .slot.hot{background:var(--acs);outline:2px solid var(--ac);border-radius:6px}
 .ghost{position:fixed;z-index:99;pointer-events:none;transform:translate(-50%,-130%);background:var(--ac);color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.28)}
@@ -180,7 +180,7 @@ Q.done=true;saveWB();render();window.scrollTo(0,0)}
 function bankHTML(){var used=Q.qs.map(function(q){return q.ans});
 return '<div class="bank"><b style="color:var(--ac)">Word Bank</b>'+Q.bank.map(function(w){return '<span class="chip2'+(used.indexOf(w)>=0?' used':'')+'">'+w+'</span>'}).join("")+'</div>'}
 function slotHTML(q,i){
-if(Q.done)return '<span class="slot f">'+(q.ans||"&emsp;&emsp;")+'</span>';
+if(Q.done)return '<span class="slot fill">'+(q.ans||"&emsp;&emsp;")+'</span>';
 var used=Q.qs.map(function(x){return x.ans});
 return '<select class="dd" onchange="setAns('+i+',this.value)"><option value="">請選擇</option>'+Q.bank.slice().sort().map(function(w){return '<option value="'+w+'"'+(q.ans==w?' selected':'')+(used.indexOf(w)>=0&&q.ans!=w?' disabled':'')+'>'+w+'</option>'}).join("")+'</select>'}
 function setAns(i,w){if(Q.done)return;Q.qs[i].ans=w;var y=window.scrollY;render();window.scrollTo(0,y)}
