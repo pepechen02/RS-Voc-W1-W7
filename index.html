@@ -77,6 +77,11 @@ td.dz{color:var(--sub)}
 .slot{min-height:1.9em;min-width:120px;vertical-align:middle;user-select:none;-webkit-user-select:none}
 .slot.hot{background:var(--acs);outline:2px solid var(--ac);border-radius:6px}
 .ghost{position:fixed;z-index:99;pointer-events:none;transform:translate(-50%,-130%);background:var(--ac);color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.28)}
+.chip2{cursor:pointer;touch-action:manipulation}
+.slot.act{outline:2px solid var(--ac);background:var(--acs);border-radius:6px}
+.chip2.used{text-decoration:line-through;opacity:.5}
+.chip2{cursor:default}
+select.dd{font:inherit;padding:3px 8px;border:1px solid var(--ac);border-radius:8px;background:var(--card);color:var(--ink);min-width:130px;margin:0 4px}
 @media print{
 @page{size:A4;margin:10mm}
 body{background:#fff;color:#000;padding:0}
@@ -141,12 +146,12 @@ function newQ(){
 var wk=Q.mode==1?["W2","W3","W5","W6","W7"]:["W1","W4"];
 var pk=shuf(D.filter(function(d){return wk.indexOf(d[0])>=0})).slice(0,10);
 Q.qs=pk.map(function(d){var q={d:d,ans:"",ok:false};if(Q.mode==3){var a=S[d[1]];q.s=a[Math.floor(Math.random()*a.length)]}return q});
-Q.bank=shuf(pk.map(function(d){return d[1]}));Q.sel="";Q.done=false;render()}
+Q.bank=shuf(pk.map(function(d){return d[1]}));Q.sel="";Q.act=0;Q.done=false;render()}
 function qnav(){var n=["① 聽寫拼字","② 定義拼字","③ 例句填空","錯題本 ("+WB.length+")"];return '<div class="sub2">'+n.map(function(t,i){return '<button class="'+(Q.mode==i+1?'on':'')+'" onclick="setMode('+(i+1)+')">'+t+'</button>'}).join("")+'</div>'}
 function render(){
 var h=qnav(),m=Q.mode,el=document.getElementById("qz");
 if(m==4){el.innerHTML=h+wrongHTML();return}
-var info=m==1?"聽朗讀，輸入單字拼法（範圍 W2 W3 W5 W6 W7）":m==2?"看英文定義，輸入單字（範圍 W1 W4）":"把單字拖曳到空格；手機可先點單字再點空格（範圍 W1 W4）";
+var info=m==1?"聽朗讀，輸入單字拼法（範圍 W2 W3 W5 W6 W7）":m==2?"看英文定義，輸入單字（範圍 W1 W4）":"用每題空格的下拉選單選擇單字，選過的單字會在 Word Bank 劃上刪除線（範圍 W1 W4）";
 h+='<div class="qhead"><span>'+info+'</span><button class="act p" onclick="newQ()">🔄 重新測驗（重新隨機抽 10 題）</button></div>';
 if(Q.done)h+='<div class="score">得分：'+Q.qs.filter(function(q){return q.ok}).length+' / 10　<span class="tag">答錯的題目已加入錯題本</span></div>';
 if(m==3)h+=bankHTML();
@@ -158,7 +163,7 @@ var d=q.d,m=Q.mode,h='<div class="qi'+(Q.done?(q.ok?' ok':' bad'):'')+'"><div cl
 var inp='<div><input id="in'+i+'" '+(Q.done?'disabled ':'')+'value="'+esc(q.ans)+'" placeholder="輸入拼法" autocomplete="off" autocapitalize="off" spellcheck="false"></div>';
 if(m==1)h+='<button class="act" onclick="speak(\''+d[1]+'\')">🔊 播放單字</button>'+inp;
 else if(m==2)h+='<div class="df">'+mask(d)+'</div>'+inp;
-else h+='<div class="sen">'+q.s.replace("___",'<span class="slot'+(q.ans?' f':'')+'" data-i="'+i+'" '+(q.ans&&!Q.done?'onpointerdown="pd(event,\''+q.ans+'\','+i+')"':'onclick="slotClick('+i+')"')+'>'+(q.ans||"&emsp;&emsp;")+'</span>')+'</div>';
+else h+='<div class="sen">'+q.s.replace("___",slotHTML(q,i))+'</div>';
 if(Q.done)h+=exHTML(q);
 return h+'</div></div>'}
 function exHTML(q){var d=q.d;
@@ -173,28 +178,12 @@ else q.ok=q.ans==q.d[1];
 if(!q.ok&&!WB.some(function(x){return x.w==q.d[1]&&x.m==Q.mode}))WB.push({w:q.d[1],m:Q.mode})});
 Q.done=true;saveWB();render();window.scrollTo(0,0)}
 function bankHTML(){var used=Q.qs.map(function(q){return q.ans});
-return '<div class="bank"><b style="color:var(--ac)">Word Bank</b>'+Q.bank.map(function(w){return used.indexOf(w)>=0?'':'<span class="chip2'+(Q.sel==w?' sel':'')+'" onpointerdown="pd(event,\''+w+'\',-1)">'+w+'</span>'}).join("")+'</div>'}
-function selW(w){if(Q.done)return;Q.sel=Q.sel==w?"":w;render()}
-function place(i,w){if(Q.done||!w)return;Q.qs.forEach(function(q){if(q.ans==w)q.ans=""});Q.qs[i].ans=w;Q.sel="";render()}
-var DR=null;
-function pd(e,w,src){if(Q.done||(e.button&&e.button!==0))return;
-DR={w:w,src:src,x:e.clientX,y:e.clientY,g:null};
-document.addEventListener("pointermove",pm,{passive:false});document.addEventListener("pointerup",pu);document.addEventListener("pointercancel",pc)}
-function slotAt(x,y){var el=document.elementFromPoint(x,y);return el&&el.closest?el.closest(".slot"):null}
-function hl(t){document.querySelectorAll(".slot.hot").forEach(function(n){n.classList.remove("hot")});if(t)t.classList.add("hot")}
-function pm(e){if(!DR)return;
-if(!DR.g){if(Math.abs(e.clientX-DR.x)+Math.abs(e.clientY-DR.y)<8)return;
-var g=document.createElement("div");g.className="chip2 ghost";g.textContent=DR.w;document.body.appendChild(g);DR.g=g}
-DR.g.style.left=e.clientX+"px";DR.g.style.top=e.clientY+"px";e.preventDefault();hl(slotAt(e.clientX,e.clientY))}
-function endDR(){document.removeEventListener("pointermove",pm);document.removeEventListener("pointerup",pu);document.removeEventListener("pointercancel",pc);var d=DR;DR=null;if(d&&d.g)d.g.remove();hl(null);return d}
-function pc(){var d=endDR();if(d&&d.g)render()}
-function pu(e){var d=endDR();if(!d)return;
-if(!d.g){if(d.src<0)selW(d.w);else slotClick(d.src);return}
-var t=slotAt(e.clientX,e.clientY);
-if(t){var i=+t.dataset.i;if(d.src>=0&&d.src!=i){Q.qs[d.src].ans=Q.qs[i].ans}else if(d.src<0){Q.qs.forEach(function(q){if(q.ans==d.w)q.ans=""})}Q.qs[i].ans=d.w;Q.sel=""}
-else if(d.src>=0)Q.qs[d.src].ans="";
-render()}
-function slotClick(i){if(Q.done)return;if(Q.sel)place(i,Q.sel);else if(Q.qs[i].ans){Q.qs[i].ans="";render()}}
+return '<div class="bank"><b style="color:var(--ac)">Word Bank</b>'+Q.bank.map(function(w){return '<span class="chip2'+(used.indexOf(w)>=0?' used':'')+'">'+w+'</span>'}).join("")+'</div>'}
+function slotHTML(q,i){
+if(Q.done)return '<span class="slot f">'+(q.ans||"&emsp;&emsp;")+'</span>';
+var used=Q.qs.map(function(x){return x.ans});
+return '<select class="dd" onchange="setAns('+i+',this.value)"><option value="">請選擇</option>'+Q.bank.slice().sort().map(function(w){return '<option value="'+w+'"'+(q.ans==w?' selected':'')+(used.indexOf(w)>=0&&q.ans!=w?' disabled':'')+'>'+w+'</option>'}).join("")+'</select>'}
+function setAns(i,w){if(Q.done)return;Q.qs[i].ans=w;var y=window.scrollY;render();window.scrollTo(0,y)}
 function wrongHTML(){
 if(!WB.length)return '<div class="empty">目前沒有錯題 🎉<br>測驗答錯的題目會自動收進這裡。</div>';
 var tn=["","聽寫拼字","定義拼字","例句填空"];
